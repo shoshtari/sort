@@ -92,26 +92,36 @@ def ShellSort(a, f=0):
 #CocktailSort
 #QuickSort
 #HeapSort
+def ListGen(n):
+    out=[]
+    for i in range(n, 0, -1):
+        out.append(i)
+    return out
 def execute_time(func, num):
-    a=[]
-    for i in range(num, 0, -1):
-        a.append(i)
+    a=ListGen(num)
     first=time.perf_counter()
-    func(a)
+    try:
+        func(a)
+    except:
+        func()
     last=time.perf_counter()
     execute=last-first
     return execute
-a=[1, 2, 6, 3, 9, 4, 1]
-##a=["Shell", "Merge", "Bubble", "Insertion", "Selection"]
-##n=int(input("enter num\n"))
-##b=[]
-##b.append(execute_time(ShellSort, n))
-##b.append(execute_time(MergeSort, n))
-##b.append(execute_time(BubbleSort, n))
-##b.append(execute_time(InsertionSort, n))
-##b.append(execute_time(SelectionSort, n))
-##c=b.copy()
-##c.sort()
-##for i in range(5):
-##    u=b.index(c[i])
-##    print(a[u])
+a=["Shell", "Merge", "Bubble", "Insertion", "Selection", "Python Sort"]
+n=int(input("enter num\n"))
+o=ListGen(n)
+b=[]
+
+b.append(execute_time(ShellSort, n))
+b.append(execute_time(MergeSort, n))
+b.append(execute_time(BubbleSort, n))
+b.append(execute_time(InsertionSort, n))
+b.append(execute_time(SelectionSort, n))
+b.append(execute_time(ListGen(n).sort, n))
+
+
+c=b.copy()
+c.sort()
+for i in range(len(a)):
+    u=b.index(c[i])
+    print(a[u])
