@@ -5,6 +5,11 @@ def min(a):
         if a[i]<m:
             m=a[i]
     return m
+def swap (s,x,y): 
+    temp = s[x]
+    s[x] = s[y]
+    s[y] = temp 
+################
 def BubbleSort(a):
     swap=0
     done=0
@@ -114,13 +119,13 @@ def QuickSort(a, first=0, last=-1):
 #CocktailSort
 #QuickSort
 #HeapSort
-def LinkGenerator(n):
+def ListGenerator(n):
     a=[]
     for i in range(n, 0, -1):
         a.append(i)
     return a
 def execute_time(func, num):
-    a=LinkGenerator(num)
+    a=ListGenerator(num)
     try:
         first=time.perf_counter()
         func(a)
@@ -138,14 +143,16 @@ def display(a, n):
     b.append(execute_time(BubbleSort, n))
     b.append(execute_time(InsertionSort, n))
     b.append(execute_time(SelectionSort, n))
-    b.append(execute_time(LinkGenerator(n).sort, n))
+    b.append(execute_time(ListGenerator(n).sort, n))
     b.append(execute_time(QuickSort, n))
     c=b.copy()
     c.sort()
     for i in range(len(a)):
         u=b.index(c[i])
-        print(a[u])
-a=["Shell", "Merge", "Bubble", "Insertion", "Selection", "PythonSort", "QuickSort"]
+        print(a[u], b[u])
+a=["Shell Sort", "Merge Sort", "Bubble Sort", "Insertion Sort", "Selection Sort", "Python Sort", "Quick Sort"]
 n=int(input("enter num\n"))
 display(a, n)
-
+finall=ListGenerator(n)
+finall.sort()
+print(finall)
