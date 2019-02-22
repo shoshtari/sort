@@ -89,39 +89,63 @@ def ShellSort(a, f=0):
             swap=0
             i=0
     return a
+def QuickSort(a, first=0, last=-1):
+    if last==-1:
+        last=len(a)-1
+    i=first
+    j=last
+    m=i+j//2
+    w=a[m]
+    while i<j:
+        while a[i]<w and i<m:
+            i+=1
+        while a[j]>w and j>m:
+            j-=1
+        tmp=a[i]
+        a[i]=a[j]
+        a[j]=tmp
+        i+=1
+        j-=1
+    if last<j:
+        QuickSort(a, first, m)
+    if i<first:
+        QuickSort(a, m, last)
+    return a
 #CocktailSort
 #QuickSort
 #HeapSort
-def ListGen(n):
-    out=[]
+def LinkGenerator(n):
+    a=[]
     for i in range(n, 0, -1):
-        out.append(i)
-    return out
+        a.append(i)
+    return a
 def execute_time(func, num):
-    a=ListGen(num)
-    first=time.perf_counter()
+    a=LinkGenerator(num)
     try:
+        first=time.perf_counter()
         func(a)
+        last=time.perf_counter()
     except:
+        first=time.perf_counter()
         func()
-    last=time.perf_counter()
+        last=time.perf_counter()
     execute=last-first
     return execute
-a=["Shell", "Merge", "Bubble", "Insertion", "Selection", "Python Sort"]
+def display(a, n):
+    b=[]
+    b.append(execute_time(ShellSort, n))
+    b.append(execute_time(MergeSort, n))
+    b.append(execute_time(BubbleSort, n))
+    b.append(execute_time(InsertionSort, n))
+    b.append(execute_time(SelectionSort, n))
+    b.append(execute_time(LinkGenerator(n).sort, n))
+    b.append(execute_time(QuickSort, n))
+    c=b.copy()
+    c.sort()
+    for i in range(len(a)):
+        u=b.index(c[i])
+        print(a[u])
+a=["Shell", "Merge", "Bubble", "Insertion", "Selection", "PythonSort", "QuickSort"]
 n=int(input("enter num\n"))
-o=ListGen(n)
-b=[]
+display(a, n)
 
-b.append(execute_time(ShellSort, n))
-b.append(execute_time(MergeSort, n))
-b.append(execute_time(BubbleSort, n))
-b.append(execute_time(InsertionSort, n))
-b.append(execute_time(SelectionSort, n))
-b.append(execute_time(ListGen(n).sort, n))
-
-
-c=b.copy()
-c.sort()
-for i in range(len(a)):
-    u=b.index(c[i])
-    print(a[u])
