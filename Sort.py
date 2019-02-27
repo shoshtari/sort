@@ -117,7 +117,6 @@ def QuickSort(a, first=0, last=-1):
         QuickSort(a, m, last)
     return a
 #CocktailSort
-#QuickSort
 #HeapSort
 def ListGenerator(n):
     a=[]
