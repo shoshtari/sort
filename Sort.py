@@ -63,16 +63,18 @@ def SelectionSort(a):
         out.append(min(a))
         a.remove(out[i])
     return out
-def InsertionSort(a):
-    out=[]
-    o=0
-    for i in a:
-        j=0
-        while j<o and out[j]<i:
-            j+=1
-        out.insert(j, i)
-        o+=1
-    return out
+def insertion_sort(a):
+	n = len(a)
+	o = 0
+	for i in range(n):
+		val=a[i]
+		j=i-1
+		while j>=0 and a[j]>val:
+			a[j+1]=a[j]
+			j-=1 
+		a[j+1]=val
+	return a
+
 def ShellSort(a, f=0):
     if len(a)<2:
         return a
